@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pesticide Knowledge | AgriDirect</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f8f4;
+    color:#173321;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#064d2d,#13824d);
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+}
+
+.logo h1{
+    font-size:20px;
+}
+
+.logo small{
+    color:rgba(255,255,255,.7);
+    font-size:10px;
+}
+
+.header-actions{
+    display:flex;
+    gap:10px;
+}
+
+.header-btn{
+    border:none;
+    border-radius:12px;
+    padding:11px 15px;
+    cursor:pointer;
+    background:rgba(255,255,255,.14);
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.header-btn:hover{
+    background:rgba(255,255,255,.25);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    padding:45px 25px;
+    text-align:center;
+    background:
+        radial-gradient(circle at top right,rgba(69,176,112,.25),transparent 35%),
+        linear-gradient(135deg,#e5f6e9,#f8fcf9);
+}
+
+.hero h2{
+    font-size:32px;
+    color:#075b35;
+    margin-bottom:12px;
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    color:#66756c;
+    line-height:1.7;
+}
+
+/* ================= SEARCH ================= */
+
+.search-area{
+    max-width:900px;
+    margin:-20px auto 25px;
+    background:white;
+    padding:18px;
+    border-radius:18px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    position:relative;
+}
+
+.search-box{
+    display:flex;
+    gap:10px;
+}
+
+.search-box input{
+    flex:1;
+    height:48px;
+    border:1px solid #dce8df;
+    border-radius:12px;
+    padding:0 15px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#16804b;
+}
+
+.search-btn{
+    border:none;
+    background:#116b40;
+    color:white;
+    border-radius:12px;
+    padding:0 20px;
+    cursor:pointer;
+}
+
+/* ================= FILTERS ================= */
+
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:15px;
+}
+
+.filter{
+    border:1px solid #dce9df;
+    background:#f6faf7;
+    padding:9px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    color:#286443;
+    font-size:12px;
+}
+
+.filter.active,
+.filter:hover{
+    background:#126d41;
+    color:white;
+}
+
+/* ================= CONTENT ================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:10px 25px 50px;
+}
+
+.section-title{
+    margin:28px 0 15px;
+}
+
+.section-title h2{
+    color:#145c37;
+    font-size:21px;
+}
+
+.section-title p{
+    color:#829087;
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.product{
+    background:white;
+    border:1px solid #e4eee6;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 7px 25px rgba(0,0,0,.05);
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.09);
+}
+
+.product-top{
+    padding:23px;
+    background:linear-gradient(135deg,#eaf7ed,#f8fcf9);
+    text-align:center;
+}
+
+.product-icon{
+    width:75px;
+    height:75px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:white;
+    border-radius:22px;
+    font-size:38px;
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+}
+
+.product-body{
+    padding:20px;
+}
+
+.product-body h3{
+    color:#155b37;
+    margin-bottom:7px;
+}
+
+.type{
+    display:inline-block;
+    background:#e7f6eb;
+    color:#287c4d;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.product-body p{
+    color:#6f7e74;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.info-list{
+    margin-top:13px;
+    list-style:none;
+}
+
+.info-list li{
+    padding:6px 0;
+    border-bottom:1px solid #edf1ee;
+    font-size:10px;
+}
+
+.info-list li:last-child{
+    border-bottom:none;
+}
+
+.info-list strong{
+    color:#315d43;
+}
+
+.product-actions{
+    display:flex;
+    gap:8px;
+    margin-top:16px;
+}
+
+.info-btn{
+    flex:1;
+    border:none;
+    border-radius:10px;
+    padding:10px;
+    cursor:pointer;
+    background:#126d41;
+    color:white;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.info-btn.secondary{
+    background:#edf6ef;
+    color:#17623b;
+}
+
+/* ================= SAFETY ================= */
+
+.safety{
+    margin-top:25px;
+    padding:25px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#fff8df,#fffdf5);
+    border:1px solid #f0e4b8;
+}
+
+.safety h2{
+    color:#86610d;
+    margin-bottom:15px;
+}
+
+.safety-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.safety-card{
+    background:rgba(255,255,255,.75);
+    border-radius:14px;
+    padding:15px;
+}
+
+.safety-card strong{
+    display:block;
+    margin-bottom:5px;
+    font-size:12px;
+}
+
+.safety-card p{
+    font-size:10px;
+    color:#766e58;
+    line-height:1.5;
+}
+
+/* ================= REVIEWS ================= */
+
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.review{
+    background:white;
+    padding:19px;
+    border-radius:17px;
+    border:1px solid #e5eee7;
+}
+
+.review-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.review-avatar{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:#e9f5ec;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.review strong{
+    font-size:11px;
+}
+
+.stars{
+    color:#e5a516;
+    font-size:12px;
+}
+
+.review p{
+    color:#6e7b73;
+    font-size:10px;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,25,15,.65);
+    z-index:500;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:550px;
+    max-height:90vh;
+    overflow-y:auto;
+    padding:28px;
+    border-radius:23px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:15px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#edf3ee;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.modal-box h2{
+    color:#125f39;
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#6d7971;
+    font-size:11px;
+    line-height:1.7;
+}
+
+.warning{
+    margin-top:18px;
+    padding:15px;
+    border-radius:13px;
+    background:#fff5dc;
+    color:#775c19;
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* ================= VOICE ================= */
+
+.voice{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:300;
+}
+
+.voice-btn{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:20px;
+    background:#0d6d40;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(13,109,64,.3);
+}
+
+.voice-btn.speaking{
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 0 rgba(13,109,64,.5)
+    }
+
+    70%{
+        box-shadow:0 0 0 15px rgba(13,109,64,0)
+    }
+
+    100%{
+        box-shadow:0 0 0 0 rgba(13,109,64,0)
+    }
+}
+
+/* ================= EMPTY ================= */
+
+.no-results{
+    display:none;
+    text-align:center;
+    padding:40px;
+    color:#79877e;
+    background:white;
+    border-radius:18px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .safety-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .review-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .header{
+        padding:15px;
+    }
+
+    .header-actions .header-btn{
+        padding:9px;
+        font-size:10px;
+    }
+
+    .hero h2{
+        font-size:25px;
+    }
+
+    .container{
+        padding:10px 15px 40px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .safety-grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-btn{
+        height:45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🌱
+        </div>
+
+        <div>
+            <h1>AgriDirect</h1>
+            <small>Pesticide Knowledge Centre</small>
+        </div>
+
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            class="header-btn"
+            onclick="changeLanguage()">
+
+            🌐 English / తెలుగు
+
+        </button>
+
+        <!-- CONNECTED TO FARMER DASHBOARD -->
+        <a
+            href="{{ url_for('farmer_dashboard') }}"
+            class="header-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <h2 id="heroTitle">
+        🌱 Pesticide Knowledge Centre
+    </h2>
+
+    <p id="heroText">
+        Learn about crop protection, pest management,
+        responsible pesticide use and safer farming practices.
+        Always read the product label and follow local agricultural
+        expert recommendations before using any product.
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<div class="search-area">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search crop, pest, disease or pesticide...">
+
+        <button
+            class="search-btn"
+            onclick="searchProducts()">
+
+            🔎 Search
+
+        </button>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            onclick="filterProducts('all',this)">
+
+            All
+
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProducts('insect',this)">
+
+            🐛 Insect Management
+
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProducts('fungal',this)">
+
+            🍄 Fungal Diseases
+
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProducts('weed',this)">
+
+            🌿 Weed Management
+
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProducts('bio',this)">
+
+            🌱 Biological Options
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<div class="section-title">
+
+    <h2>🌾 Crop Protection Information</h2>
+
+    <p>
+        Educational information for farmers
+    </p>
+
+</div>
+
+
+<div class="product-grid" id="productGrid">
+
+
+<!-- PRODUCT 1 -->
+
+<div class="product"
+     data-type="insect"
+     data-search="insect aphid sucking pest vegetables">
+
+    <div class="product-top">
+
+        <div class="product-icon">
+            🐛
+        </div>
+
+    </div>
+
+    <div class="product-body">
+
+        <h3>Insect Pest Management</h3>
+
+        <span class="type">
+            INSECT MANAGEMENT
+        </span>
+
+        <p>
+            Information about managing common insect
+            pests such as aphids, whiteflies and caterpillars.
+        </p>
+
+        <ul class="info-list">
+
+            <li>
+                <strong>Suitable for:</strong>
+                Vegetables and field crops
+            </li>
+
+            <li>
+                <strong>Approach:</strong>
+                Integrated Pest Management
+            </li>
+
+            <li>
+                <strong>Important:</strong>
+                Identify the pest before treatment
+            </li>
+
+        </ul>
+
+        <div class="product-actions">
+
+            <button
+                class="info-btn"
+                onclick="showInfo('Insect Pest Management')">
+
+                View Information
+
+            </button>
+
+            <button
+                class="info-btn secondary"
+                onclick="speakTelugu('పంటలో పురుగులు కనిపిస్తే ముందుగా పురుగు రకాన్ని గుర్తించండి. అవసరమైనప్పుడు వ్యవసాయ నిపుణుల సలహా తీసుకోండి.')">
+
+                🔊 వినండి
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div class="product"
+     data-type="fungal"
+     data-search="fungus fungal disease rice vegetables leaf spot">
+
+    <div class="product-top">
+
+        <div class="product-icon">
+            🍄
+        </div>
+
+    </div>
+
+    <div class="product-body">
+
+        <h3>Fungal Disease Management</h3>
+
+        <span class="type">
+            FUNGAL DISEASE
+        </span>
+
+        <p>
+            Learn about identifying common fungal
+            disease symptoms and preventive practices.
+        </p>
+
+        <ul class="info-list">
+
+            <li>
+                <strong>Examples:</strong>
+                Leaf spots and fungal infections
+            </li>
+
+            <li>
+                <strong>Prevention:</strong>
+                Field hygiene and proper irrigation
+            </li>
+
+            <li>
+                <strong>Important:</strong>
+                Confirm disease before treatment
+            </li>
+
+        </ul>
+
+        <div class="product-actions">
+
+            <button
+                class="info-btn"
+                onclick="showInfo('Fungal Disease Management')">
+
+                View Information
+
+            </button>
+
+            <button
+                class="info-btn secondary"
+                onclick="speakTelugu('ఆకులపై మచ్చలు లేదా ఫంగస్ లక్షణాలు కనిపిస్తే వ్యాధిని సరిగ్గా గుర్తించడం ముఖ్యం.')">
+
+                🔊 వినండి
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="product"
+     data-type="weed"
+     data-search="weed weed management crop field">
+
+    <div class="product-top">
+
+        <div class="product-icon">
+            🌿
+        </div>
+
+    </div>
+
+    <div class="product-body">
+
+        <h3>Weed Management</h3>
+
+        <span class="type">
+            WEED MANAGEMENT
+        </span>
+
+        <p>
+            Learn about cultural, mechanical and other
+            responsible approaches to weed management.
+        </p>
+
+        <ul class="info-list">
+
+            <li>
+                <strong>Methods:</strong>
+                Mulching and mechanical control
+            </li>
+
+            <li>
+                <strong>Goal:</strong>
+                Reduce crop competition
+            </li>
+
+            <li>
+                <strong>Important:</strong>
+                Follow crop-specific guidance
+            </li>
+
+        </ul>
+
+        <div class="product-actions">
+
+            <button
+                class="info-btn"
+                onclick="showInfo('Weed Management')">
+
+                View Information
+
+            </button>
+
+            <button
+                class="info-btn secondary"
+                onclick="speakTelugu('కలుపు మొక్కలను నియంత్రించడానికి ముందుగా యాంత్రిక మరియు సాంస్కృతిక పద్ధతులను పరిశీలించండి.')">
+
+                🔊 వినండి
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div class="product"
+     data-type="bio"
+     data-search="biological neem natural bio pest management">
+
+    <div class="product-top">
+
+        <div class="product-icon">
+            🌱
+        </div>
+
+    </div>
+
+    <div class="product-body">
+
+        <h3>Biological Pest Management</h3>
+
+        <span class="type">
+            BIOLOGICAL OPTION
+        </span>
+
+        <p>
+            Explore biological and ecological approaches
+            that can be included in integrated pest management.
+        </p>
+
+        <ul class="info-list">
+
+            <li>
+                <strong>Approach:</strong>
+                Beneficial organisms and bio-based methods
+            </li>
+
+            <li>
+                <strong>Benefit:</strong>
+                Supports integrated farming
+            </li>
+
+            <li>
+                <strong>Important:</strong>
+                Use locally recommended practices
+            </li>
+
+        </ul>
+
+        <div class="product-actions">
+
+            <button
+                class="info-btn"
+                onclick="showInfo('Biological Pest Management')">
+
+                View Information
+
+            </button>
+
+            <button
+                class="info-btn secondary"
+                onclick="speakTelugu('జీవ నియంత్రణ పద్ధతులు సమగ్ర పురుగు నిర్వహణలో ఉపయోగపడతాయి. స్థానిక వ్యవసాయ నిపుణుల సలహాను తీసుకోండి.')">
+
+                🔊 వినండి
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="product"
+     data-type="insect"
+     data-search="caterpillar fruit vegetable pest">
+
+    <div class="product-top">
+
+        <div class="product-icon">
+            🐞
+        </div>
+
+    </div>
+
+    <div class="product-body">
+
+        <h3>Caterpillar Management</h3>
+
+        <span class="type">
+            INSECT MANAGEMENT
+        </span>
+
+        <p>
+            Educational information about recognizing
+            caterpillar damage and monitoring crop fields.
+        </p>
+
+        <ul class="info-list">
+
+            <li>
+                <strong>Monitor:</strong>
+                Leaves and young shoots
+            </li>
+
+            <li>
+                <strong>Action:</strong>
+                Identify pest before intervention
+            </li>
+
+            <li>
+                <strong>Advice:</strong>
+                Use recommended local practices
+            </li>
+
+        </ul>
+
+        <div class="product-actions">
+
+            <button
+                class="info-btn"
+                onclick="showInfo('Caterpillar Management')">
+
+                View Information
+
+            </button>
+
+            <button
+                class="info-btn secondary"
+                onclick="speakTelugu('ఆకులను తినే పురుగుల నష్టాన్ని క్రమం తప్పకుండా గమనించండి.')">
+
+                🔊 వినండి
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div class="product"
+     data-type="bio"
+     data-search="integrated pest management IPM natural farming">
+
+    <div class="product-top">
+
+        <div class="product-icon">
+            ♻️
+        </div>
+
+    </div>
+
+    <div class="product-body">
+
+        <h3>Integrated Pest Management</h3>
+
+        <span class="type">
+            IPM
+        </span>
+
+        <p>
+            Combine monitoring, prevention, biological methods
+            and other appropriate measures for responsible crop protection.
+        </p>
+
+        <ul class="info-list">
+
+            <li>
+                <strong>Step 1:</strong>
+                Monitor the crop
+            </li>
+
+            <li>
+                <strong>Step 2:</strong>
+                Identify the problem
+            </li>
+
+            <li>
+                <strong>Step 3:</strong>
+                Select an appropriate method
+            </li>
+
+        </ul>
+
+        <div class="product-actions">
+
+            <button
+                class="info-btn"
+                onclick="showInfo('Integrated Pest Management')">
+
+                View Information
+
+            </button>
+
+            <button
+                class="info-btn secondary"
+                onclick="speakTelugu('సమగ్ర పురుగు నిర్వహణలో పంటను గమనించడం, సమస్యను గుర్తించడం మరియు సరైన పద్ధతిని ఎంచుకోవడం ముఖ్యమైనవి.')">
+
+                🔊 వినండి
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="no-results" id="noResults">
+
+    🔎 No matching information found.
+
+    <br><br>
+
+    Try another crop, pest or disease.
+
+</div>
+
+
+<!-- =========================================================
+     SAFETY
+========================================================= -->
+
+<section class="safety">
+
+    <h2>
+        ⚠️ Important Farmer Safety
+    </h2>
+
+    <div class="safety-grid">
+
+        <div class="safety-card">
+
+            <strong>📖 Read the Label</strong>
+
+            <p>
+                Always read and follow the instructions
+                on the product label.
+            </p>
+
+        </div>
+
+        <div class="safety-card">
+
+            <strong>🧤 Protective Equipment</strong>
+
+            <p>
+                Follow the label's recommended protective
+                equipment and precautions.
+            </p>
+
+        </div>
+
+        <div class="safety-card">
+
+            <strong>🚫 Don't Mix Randomly</strong>
+
+            <p>
+                Do not combine agricultural chemicals unless
+                specifically recommended by an authorised expert.
+            </p>
+
+        </div>
+
+        <div class="safety-card">
+
+            <strong>🔒 Safe Storage</strong>
+
+            <p>
+                Keep agricultural chemicals in their original
+                labelled containers and away from children.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FARMER EXPERIENCES
+========================================================= -->
+
+<div class="section-title">
+
+    <h2>⭐ Farmer Experiences</h2>
+
+    <p>
+        Experiences are for learning only. Always verify advice
+        with an agricultural expert.
+    </p>
+
+</div>
+
+
+<div class="review-grid">
+
+    <div class="review">
+
+        <div class="review-top">
+
+            <div class="review-avatar">
+                👨‍🌾
+            </div>
+
+            <div>
+
+                <strong>
+                    Ramesh – Guntur
+                </strong>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+            </div>
+
+        </div>
+
+        <p>
+            Regular crop monitoring helped me identify pest
+            problems earlier. I now check the field regularly
+            instead of waiting until the damage becomes serious.
+        </p>
+
+    </div>
+
+
+    <div class="review">
+
+        <div class="review-top">
+
+            <div class="review-avatar">
+                👩‍🌾
+            </div>
+
+            <div>
+
+                <strong>
+                    Lakshmi – Krishna
+                </strong>
+
+                <div class="stars">
+                    ★★★★☆
+                </div>
+
+            </div>
+
+        </div>
+
+        <p>
+            Learning about integrated pest management helped
+            me understand that prevention and monitoring are
+            important parts of crop protection.
+        </p>
+
+    </div>
+
+
+    <div class="review">
+
+        <div class="review-top">
+
+            <div class="review-avatar">
+                👨‍🌾
+            </div>
+
+            <div>
+
+                <strong>
+                    Srinivas – Prakasam
+                </strong>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+            </div>
+
+        </div>
+
+        <p>
+            I found it useful to discuss crop problems with
+            other farmers and then confirm the recommended
+            treatment with an agricultural professional.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     EXPERT ADVICE
+========================================================= -->
+
+<div class="section-title">
+
+    <h2>🧑‍🌾 Smart Farming Advice</h2>
+
+</div>
+
+
+<div
+    style="
+    background:white;
+    padding:24px;
+    border-radius:20px;
+    border:1px solid #e3ece5;
+    ">
+
+    <h3 style="color:#145d38;margin-bottom:10px;">
+
+        Before using any crop-protection product
+
+    </h3>
+
+    <p style="color:#68776e;font-size:11px;line-height:1.8;">
+
+        1. Identify the crop and problem correctly.<br>
+        2. Monitor the field and understand the level of damage.<br>
+        3. Prefer preventive and integrated approaches where appropriate.<br>
+        4. Consult an authorised agricultural professional when uncertain.<br>
+        5. If a product is recommended, read its current label carefully
+        and follow all safety instructions.
+
+    </p>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     VOICE
+========================================================= -->
+
+<div class="voice">
+
+    <button
+        class="voice-btn"
+        id="voiceBtn"
+        onclick="voiceHelp()">
+
+        🔊
+
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     INFORMATION MODAL
+========================================================= -->
+
+<div class="modal" id="infoModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+
+            ×
+
+        </button>
+
+        <h2 id="modalTitle">
+            Crop Protection Information
+        </h2>
+
+        <p id="modalText"></p>
+
+        <div class="warning">
+
+            ⚠️ <strong>Important:</strong>
+
+            This page is for general agricultural education.
+            It does not replace advice from a qualified agricultural
+            officer or other authorised professional.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+let teluguMode = false;
+
+function changeLanguage(){
+
+    teluguMode = !teluguMode;
+
+    if(teluguMode){
+
+        document.getElementById("heroTitle").innerText =
+            "🌱 పురుగుమందుల సమాచార కేంద్రం";
+
+        document.getElementById("heroText").innerText =
+            "పంటల రక్షణ, పురుగు నిర్వహణ మరియు సురక్షితమైన వ్యవసాయ పద్ధతుల గురించి తెలుసుకోండి. ఏ ఉత్పత్తినైనా ఉపయోగించే ముందు లేబుల్ సూచనలు మరియు స్థానిక వ్యవసాయ నిపుణుల సలహాను పాటించండి.";
+
+        document.getElementById("searchInput").placeholder =
+            "పంట, పురుగు లేదా వ్యాధి కోసం వెతకండి...";
+
+    }else{
+
+        document.getElementById("heroTitle").innerText =
+            "🌱 Pesticide Knowledge Centre";
+
+        document.getElementById("heroText").innerText =
+            "Learn about crop protection, pest management, responsible pesticide use and safer farming practices. Always read the product label and follow local agricultural expert recommendations before using any product.";
+
+        document.getElementById("searchInput").placeholder =
+            "Search crop, pest, disease or pesticide...";
+
+    }
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchProducts(){
+
+    const query =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const products =
+        document.querySelectorAll(".product");
+
+    let count = 0;
+
+    products.forEach(product => {
+
+        const text =
+            product.dataset.search.toLowerCase();
+
+        if(text.includes(query)){
+
+            product.style.display = "block";
+
+            count++;
+
+        }else{
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("noResults").style.display =
+        count === 0 ? "block" : "none";
+
+}
+
+
+document
+.getElementById("searchInput")
+.addEventListener("keyup", searchProducts);
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterProducts(type, button){
+
+    document
+    .querySelectorAll(".filter")
+    .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    const products =
+        document.querySelectorAll(".product");
+
+    let count = 0;
+
+    products.forEach(product => {
+
+        if(
+            type === "all" ||
+            product.dataset.type === type
+        ){
+
+            product.style.display = "block";
+
+            count++;
+
+        }else{
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("noResults").style.display =
+        count === 0 ? "block" : "none";
+
+}
+
+
+/* =========================================================
+   INFORMATION MODAL
+========================================================= */
+
+function showInfo(title){
+
+    const texts = {
+
+        "Insect Pest Management":
+        "Common insect pests can cause damage to leaves, stems, flowers and fruits. First identify the pest and monitor its level. Integrated pest management can combine field monitoring, cultural practices, biological approaches and other appropriate methods.",
+
+        "Fungal Disease Management":
+        "Fungal disease symptoms can vary between crops. Good field hygiene, appropriate irrigation and crop management can help reduce disease pressure. Correct identification is important before selecting a treatment.",
+
+        "Weed Management":
+        "Weeds compete with crops for nutrients, water, light and space. Farmers can consider cultural, mechanical and other crop-specific management methods.",
+
+        "Biological Pest Management":
+        "Biological approaches use beneficial organisms or bio-based methods as part of integrated pest management. Local agricultural recommendations should be followed.",
+
+        "Caterpillar Management":
+        "Caterpillar damage can often be identified by feeding marks on leaves or other plant parts. Regular crop monitoring and correct identification are important.",
+
+        "Integrated Pest Management":
+        "Integrated Pest Management focuses on prevention, monitoring, correct identification and selection of appropriate control measures. It aims to manage pests responsibly while considering crop health and the farming environment."
+
+    };
+
+    document.getElementById("modalTitle")
+        .innerText = title;
+
+    document.getElementById("modalText")
+        .innerText =
+        texts[title] ||
+        "Please consult an agricultural expert for crop-specific information.";
+
+    document.getElementById("infoModal")
+        .classList.add("active");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("infoModal")
+        .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   TELUGU VOICE
+========================================================= */
+
+function speakTelugu(text){
+
+    if(!("speechSynthesis" in window)){
+
+        alert(
+            "Voice assistance is not supported by this browser."
+        );
+
+        return;
+
+    }
+
+    window.speechSynthesis.cancel();
+
+    const speech =
+        new SpeechSynthesisUtterance(text);
+
+    speech.lang = "te-IN";
+
+    speech.rate = .85;
+
+    speech.pitch = 1;
+
+    speech.volume = 1;
+
+    const voices =
+        window.speechSynthesis.getVoices();
+
+    const teluguVoice =
+        voices.find(
+            voice =>
+                voice.lang
+                .toLowerCase()
+                .includes("te")
+        );
+
+    if(teluguVoice){
+
+        speech.voice = teluguVoice;
+
+    }
+
+    const btn =
+        document.getElementById("voiceBtn");
+
+    btn.classList.add("speaking");
+
+    speech.onend = function(){
+
+        btn.classList.remove("speaking");
+
+    };
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+/* =========================================================
+   VOICE HELP
+========================================================= */
+
+function voiceHelp(){
+
+    speakTelugu(
+
+        "అగ్రి డైరెక్ట్ పురుగుమందుల సమాచార కేంద్రానికి స్వాగతం. " +
+        "ఇక్కడ మీరు పంటలలో పురుగులు, వ్యాధులు మరియు కలుపు నిర్వహణ గురించి సమాచారాన్ని తెలుసుకోవచ్చు. " +
+        "ఏ ఉత్పత్తినైనా ఉపయోగించే ముందు లేబుల్ సూచనలు చదవండి మరియు వ్యవసాయ నిపుణుల సలహా తీసుకోండి."
+
+    );
+
+}
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+document
+.getElementById("infoModal")
+.addEventListener("click", function(event){
+
+    if(event.target === this){
+
+        closeModal();
+
+    }
+
+});
+
+</script>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+</body>
+</html>

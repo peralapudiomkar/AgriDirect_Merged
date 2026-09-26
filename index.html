@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgriDirect | Direct Farmer Market</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #071f13;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ==============================
+           BACKGROUND
+        ============================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(4, 28, 17, 0.92),
+                    rgba(15, 75, 42, 0.82)
+                ),
+                url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+
+            z-index: -2;
+        }
+
+        .background::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(117, 196, 125, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(255, 255, 255, 0.07),
+                    transparent 30%
+                );
+        }
+
+        /* ==============================
+           NAVBAR
+        ============================== */
+
+        nav {
+            width: 100%;
+            padding: 22px 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            border-radius: 15px;
+
+            font-size: 26px;
+
+            backdrop-filter: blur(15px);
+        }
+
+        .logo-text h2 {
+            font-size: 23px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        /* ==============================
+           LANGUAGE SELECTOR
+        ============================== */
+
+        .language {
+            padding: 9px 14px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 13px;
+
+            color: white;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+        .language option {
+            color: #111;
+            background: white;
+        }
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        main {
+            min-height: calc(100vh - 100px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 7% 50px;
+        }
+
+        .hero {
+            width: 100%;
+            max-width: 1000px;
+
+            text-align: center;
+        }
+
+        /* ==============================
+           HERO ICON
+        ============================== */
+
+        .hero-icon {
+            width: 150px;
+            height: 150px;
+
+            margin: 0 auto 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.09);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.25),
+                inset 0 0 40px rgba(255, 255, 255, 0.04);
+
+            backdrop-filter: blur(15px);
+
+            font-size: 72px;
+
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* ==============================
+           TEXT
+        ============================== */
+
+        .welcome {
+            color: #9de0a9;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 72px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #9be4a7;
+        }
+
+        .description {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: rgba(255, 255, 255, 0.72);
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+        .telugu {
+            margin-top: 12px;
+
+            color: rgba(255, 255, 255, 0.9);
+
+            font-size: 15px;
+        }
+
+        /* ==============================
+           FEATURE SLIDER
+        ============================== */
+
+        .slider {
+            margin: 35px auto;
+
+            width: min(650px, 100%);
+
+            min-height: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 15px 25px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .slide {
+            display: none;
+
+            align-items: center;
+
+            gap: 14px;
+
+            animation: fade 0.7s ease;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-icon {
+            font-size: 30px;
+        }
+
+        .slide-text {
+            text-align: left;
+        }
+
+        .slide-text strong {
+            display: block;
+
+            font-size: 16px;
+
+            margin-bottom: 4px;
+        }
+
+        .slide-text small {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes fade {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==============================
+           BUTTONS
+        ============================== */
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            width: 220px;
+
+            padding: 17px 20px;
+
+            border-radius: 18px;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+        }
+
+        .farmer {
+            background: white;
+
+            color: #125b30;
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .buyer {
+            background: rgba(255, 255, 255, 0.08);
+
+            color: white;
+
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .transporter {
+            background: rgba(86, 180, 104, 0.18);
+
+            color: white;
+
+            border: 1px solid rgba(157, 224, 169, 0.5);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ==============================
+           BOTTOM
+        ============================== */
+
+        .bottom {
+            margin-top: 28px;
+
+            color: rgba(255, 255, 255, 0.45);
+
+            font-size: 11px;
+
+            letter-spacing: 0.3px;
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 18px;
+            }
+
+            .logo-text h2 {
+                font-size: 19px;
+            }
+
+            .language {
+                padding: 8px 12px;
+            }
+
+            main {
+                padding: 25px 18px 35px;
+            }
+
+            .hero-icon {
+                width: 125px;
+                height: 125px;
+
+                font-size: 60px;
+
+                margin-bottom: 28px;
+            }
+
+            h1 {
+                font-size: 42px;
+
+                letter-spacing: -1.5px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+
+                max-width: 340px;
+            }
+
+            .slider {
+                margin: 28px auto;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <nav>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🌱
+            </div>
+
+            <div class="logo-text">
+
+                <h2>AgriDirect</h2>
+
+                <span id="navSubtitle">
+                    Smart farming • Direct selling
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- LANGUAGE SELECTOR -->
+
+        <select
+            id="languageSelector"
+            class="language"
+            onchange="changeLanguage(this.value)"
+            aria-label="Select Language">
+
+            <option value="en">🌐 English</option>
+            <option value="te">🌐 తెలుగు</option>
+            <option value="hi">🌐 हिन्दी</option>
+
+        </select>
+
+    </nav>
+
+
+    <!-- ==============================
+         HERO
+    ============================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-icon">
+                🌾
+            </div>
+
+            <div
+                class="welcome"
+                id="welcomeText">
+
+                Welcome to AgriDirect
+
+            </div>
+
+            <h1>
+
+                <span id="headingLine1">
+                    Grow More.
+                </span>
+
+                <br>
+
+                <span id="headingLine2">
+                    Sell Smarter.
+                </span>
+
+            </h1>
+
+            <p
+                class="description"
+                id="descriptionText">
+
+                AI-powered mobile marketplace connecting
+                farmers directly with buyers — helping
+                you discover better opportunities and
+                make smarter selling decisions.
+
+            </p>
+
+            <p
+                class="telugu"
+                id="supportText">
+
+                Connecting farmers directly with buyers
+                and providing better market opportunities.
+
+            </p>
+
+
+            <!-- ==============================
+                 FEATURE SLIDER
+            ============================== -->
+
+            <div class="slider">
+
+                <div class="slide active">
+
+                    <div class="slide-icon">
+                        🌾
+                    </div>
+
+                    <div class="slide-text">
+
+                        <strong id="slide1Title">
+                            Direct Farmer-to-Buyer Access
+                        </strong>
+
+                        <small id="slide1Text">
+                            Sell your crops directly to trusted buyers.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="slide">
+
+                    <div class="slide-icon">
+                        🤖
+                    </div>
+
+                    <div class="slide-text">
+
+                        <strong id="slide2Title">
+                            AI-Powered Market Intelligence
+                        </strong>
+
+                        <small id="slide2Text">
+                            Get smarter insights before you sell.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="slide">
+
+                    <div class="slide-icon">
+                        🤝
+                    </div>
+
+                    <div class="slide-text">
+
+                        <strong id="slide3Title">
+                            Better Deals. Better Opportunities.
+                        </strong>
+
+                        <small id="slide3Text">
+                            Compare offers and choose what works for you.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 LOGIN BUTTONS
+            ============================== -->
+
+            <div class="buttons">
+
+                <!-- FARMER -->
+
+                <button
+                    class="btn farmer"
+                    onclick="farmerLogin()">
+
+                    🌾
+
+                    <span id="farmerButton">
+                        Farmer Login
+                    </span>
+
+                </button>
+
+
+                <!-- BUYER -->
+
+                <button
+                    class="btn buyer"
+                    onclick="buyerLogin()">
+
+                    🏪
+
+                    <span id="buyerButton">
+                        Buyer Login
+                    </span>
+
+                </button>
+
+
+                <!-- TRANSPORTER -->
+
+                <button
+                    class="btn transporter"
+                    onclick="transporterLogin()">
+
+                    🚛
+
+                    <span id="transporterButton">
+                        Transporter Login
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="bottom"
+                id="bottomText">
+
+                🌱 Connecting farms with opportunities
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+
+    <script>
+
+        /* ==========================================
+           FEATURE SLIDER
+        ========================================== */
+
+        let currentSlide = 0;
+
+        const slides =
+            document.querySelectorAll(".slide");
+
+        function showSlide(index) {
+
+            slides.forEach(
+                slide => slide.classList.remove("active")
+            );
+
+            slides[index].classList.add("active");
+        }
+
+        setInterval(() => {
+
+            currentSlide++;
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+
+            showSlide(currentSlide);
+
+        }, 4000);
+
+
+        /* ==========================================
+           LOGIN FUNCTIONS
+        ========================================== */
+
+    function farmerLogin() {
+        window.location.href = "{{ url_for('farmer_login') }}";
+    }
+
+    function buyerLogin() {
+        window.location.href = "{{ url_for('buyer_login') }}";
+    }
+
+    function transporterLogin() {
+        window.location.href = "{{ url_for('transporter_login') }}";
+    }
+    </script>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+</body>
+
+</html>

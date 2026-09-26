@@ -1,0 +1,1144 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Transporter Login | AgriDirect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    rgba(3, 45, 27, 0.78),
+                    rgba(3, 45, 27, 0.78)
+                ),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .container {
+
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            background:
+                rgba(255, 255, 255, 0.97);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.30);
+        }
+
+
+        /* =====================================================
+           LEFT SECTION
+        ===================================================== */
+
+        .left {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #07552f,
+                    #0e8050
+                );
+
+            color: white;
+
+            padding:
+                55px 45px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .left::after {
+
+            content: "🚛";
+
+            position: absolute;
+
+            right: -20px;
+            bottom: 15px;
+
+            font-size: 150px;
+
+            opacity: 0.09;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 60px;
+        }
+
+
+        .logo-icon {
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.14);
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 25px;
+        }
+
+
+        .logo strong {
+
+            font-size: 21px;
+        }
+
+
+        .logo small {
+
+            display: block;
+
+            margin-top: 3px;
+
+            opacity: 0.65;
+
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           LEFT CONTENT
+        ===================================================== */
+
+        .left h1 {
+
+            font-size: 42px;
+
+            line-height: 1.05;
+
+            margin-bottom: 18px;
+        }
+
+
+        .left p {
+
+            color:
+                rgba(255, 255, 255, 0.75);
+
+            line-height: 1.7;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .features {
+
+            margin-top: 35px;
+
+            display: grid;
+
+            gap: 15px;
+        }
+
+
+        .feature {
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+        }
+
+
+        .feature-icon {
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            display: grid;
+
+            place-items: center;
+        }
+
+
+        .feature span {
+
+            font-size: 11px;
+
+            color:
+                rgba(255, 255, 255, 0.80);
+        }
+
+
+        /* =====================================================
+           RIGHT SECTION
+        ===================================================== */
+
+        .right {
+
+            padding: 45px;
+        }
+
+
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
+
+        .back {
+
+            border: none;
+
+            background: transparent;
+
+            color: #27764c;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            margin-bottom: 25px;
+
+            padding: 5px 0;
+        }
+
+
+        .back:hover {
+
+            color: #07552f;
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           HEADINGS
+        ===================================================== */
+
+        .right h2 {
+
+            color: #173b29;
+
+            font-size: 28px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .subtitle {
+
+            color: #7c8981;
+
+            font-size: 12px;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =====================================================
+           FLASH MESSAGES
+        ===================================================== */
+
+        .flash-container {
+
+            margin-bottom: 18px;
+        }
+
+
+        .flash {
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .flash.error {
+
+            background: #fff0f0;
+
+            color: #b42318;
+
+            border:
+                1px solid #ffd0cc;
+        }
+
+
+        .flash.success {
+
+            background: #edf9f1;
+
+            color: #187348;
+
+            border:
+                1px solid #ccebd5;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-group {
+
+            margin-bottom: 17px;
+        }
+
+
+        label {
+
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            color: #304b3b;
+
+            margin-bottom: 7px;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 48px;
+
+            border:
+                1px solid #dce7df;
+
+            border-radius: 12px;
+
+            padding:
+                0 13px;
+
+            outline: none;
+
+            background: #f9fbfa;
+
+            font-size: 12px;
+
+            color: #24382d;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #19804d;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(25, 128, 77, 0.08);
+        }
+
+
+        input::placeholder {
+
+            color: #9aa59f;
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d7445,
+                    #07532f
+                );
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .login-btn:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(7, 83, 47, 0.20);
+        }
+
+
+        .login-btn:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =====================================================
+           DIVIDER
+        ===================================================== */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 24px 0;
+
+            color: #9aa59f;
+
+            font-size: 10px;
+        }
+
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #e4ebe6;
+        }
+
+
+        /* =====================================================
+           REGISTER BUTTON
+        ===================================================== */
+
+        .register {
+
+            width: 100%;
+
+            height: 45px;
+
+            border:
+                1px solid #187348;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #176b3a;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .register:hover {
+
+            background: #edf8f1;
+        }
+
+
+        /* =====================================================
+           NOTE
+        ===================================================== */
+
+        .transport-note {
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            background: #f0f8f3;
+
+            border-radius: 12px;
+
+            color: #547060;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           DEMO LOGIN
+        ===================================================== */
+
+        .demo-box {
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            background: #fff8e6;
+
+            border:
+                1px solid #f1dfaa;
+
+            color: #735b1b;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        .demo-box strong {
+
+            color: #5f4912;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 800px) {
+
+            .container {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .left {
+
+                padding:
+                    35px 28px;
+            }
+
+
+            .left h1 {
+
+                font-size: 32px;
+            }
+
+
+            .logo {
+
+                margin-bottom: 30px;
+            }
+
+
+            .features {
+
+                display: none;
+            }
+
+
+            .right {
+
+                padding:
+                    30px 25px;
+            }
+        }
+
+
+        @media(max-width: 450px) {
+
+            body {
+
+                padding: 10px;
+            }
+
+
+            .container {
+
+                border-radius: 18px;
+            }
+
+
+            .right {
+
+                padding:
+                    25px 18px;
+            }
+
+
+            .right h2 {
+
+                font-size: 24px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =====================================================
+         LEFT SIDE
+    ====================================================== -->
+
+    <section class="left">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🌱
+            </div>
+
+            <div>
+
+                <strong>
+                    AgriDirect
+                </strong>
+
+                <small>
+                    Direct Farmer-to-Buyer Marketplace
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <h1>
+
+            Move crops.
+            <br>
+
+            Connect farms.
+
+        </h1>
+
+
+        <p>
+
+            Join AgriDirect as a transporter and help farmers
+            and buyers move agricultural products safely,
+            affordably and efficiently.
+
+        </p>
+
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🚛
+                </div>
+
+                <span>
+                    Provide transportation services to buyers
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📍
+                </div>
+
+                <span>
+                    Set your routes and available locations
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    💰
+                </div>
+
+                <span>
+                    Set transparent transportation prices
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📦
+                </div>
+
+                <span>
+                    Choose vehicle capacity and crop loads
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RIGHT SIDE
+    ====================================================== -->
+
+    <section class="right">
+
+
+        <button
+            type="button"
+            class="back"
+            onclick="goHome()">
+
+            ← Back to AgriDirect
+
+        </button>
+
+
+        <h2>
+            Transporter Login
+        </h2>
+
+
+        <p class="subtitle">
+
+            Login to provide transportation services
+            to AgriDirect buyers.
+
+        </p>
+
+
+        <!-- =================================================
+             FLASK FLASH MESSAGES
+        ================================================== -->
+
+        <div class="flash-container">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="flash {{ category }}">
+
+                            {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOGIN FORM
+        ================================================== -->
+
+        <form
+            method="POST"
+            action="{{ url_for('transporter_login') }}"
+            onsubmit="return validateTransporterLogin();"
+            autocomplete="on">
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label for="mobile">
+                    Mobile Number
+                </label>
+
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    name="mobile"
+                    placeholder="Enter 10-digit mobile number"
+                    maxlength="10"
+                    minlength="10"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- VEHICLE -->
+
+            <div class="form-group">
+
+                <label for="vehicleType">
+                    Vehicle Type
+                </label>
+
+
+                <select
+                    id="vehicleType"
+                    name="vehicleType"
+                    required>
+
+                    <option value="">
+                        Select vehicle
+                    </option>
+
+                    <option value="mini-truck">
+                        Mini Truck
+                    </option>
+
+                    <option value="pickup">
+                        Pickup / Tata Ace
+                    </option>
+
+                    <option value="tractor">
+                        Tractor
+                    </option>
+
+                    <option value="truck">
+                        Truck
+                    </option>
+
+                    <option value="lorry">
+                        Lorry
+                    </option>
+
+                    <option value="container">
+                        Container Vehicle
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- LOGIN -->
+
+            <button
+                class="login-btn"
+                type="submit">
+
+                🚛 Login as Transporter
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             DEMO LOGIN
+        ================================================== -->
+
+        <div class="demo-box">
+
+            <strong>
+                Demo Transporter Login
+            </strong>
+
+            <br>
+
+            Mobile:
+            <b>9876543210</b>
+
+            <br>
+
+            Password:
+            <b>transporter123</b>
+
+            <br>
+
+            Select any vehicle type.
+
+        </div>
+
+
+
+        <!-- =================================================
+             DIVIDER
+        ================================================== -->
+
+        <div class="divider">
+
+            NEW TRANSPORTER?
+
+        </div>
+
+
+
+        <!-- =================================================
+             REGISTER
+        ================================================== -->
+
+        <button
+            type="button"
+            class="register"
+            onclick="registerTransporter()">
+
+            + Create Transporter Account
+
+        </button>
+
+
+
+        <!-- =================================================
+             INFORMATION
+        ================================================== -->
+
+        <div class="transport-note">
+
+            <b>
+                Transporter Portal
+            </b>
+
+            <br>
+
+            After login, you can add your vehicle number,
+            load capacity, service locations, available
+            routes and transportation charges so buyers
+            can find your service.
+
+        </div>
+
+
+    </section>
+
+</div>
+
+
+
+<script>
+
+    /* =====================================================
+       BACK TO HOME
+    ===================================================== */
+
+    function goHome() {
+
+        window.location.href = "{{ url_for('home') }}";
+
+    }
+
+
+
+    /* =====================================================
+       TRANSPORTER LOGIN VALIDATION
+    ===================================================== */
+
+    function validateTransporterLogin() {
+
+        const mobile =
+            document.getElementById("mobile")
+            .value
+            .trim();
+
+        const password =
+            document.getElementById("password")
+            .value
+            .trim();
+
+        const vehicleType =
+            document.getElementById("vehicleType")
+            .value
+            .trim();
+
+
+        /* Mobile validation */
+
+        if (!/^[0-9]{10}$/.test(mobile)) {
+
+            alert(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            return false;
+        }
+
+
+        /* Password validation */
+
+        if (password.length === 0) {
+
+            alert(
+                "Please enter your password."
+            );
+
+            return false;
+        }
+
+
+        /* Vehicle validation */
+
+        if (vehicleType === "") {
+
+            alert(
+                "Please select your vehicle type."
+            );
+
+            return false;
+        }
+
+
+        return true;
+
+    }
+
+
+
+    /* =====================================================
+       REGISTER TRANSPORTER
+    ===================================================== */
+
+    function registerTransporter() {
+
+        alert(
+            "Transporter registration will be available soon."
+        );
+
+    }
+
+</script>
+
+
+
+<!-- =====================================================
+     LANGUAGE SYSTEM
+====================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/language.js') }}">
+</script>
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farmer Login | AgriDirect</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #18251d;
+            overflow-x: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #062117,
+                    #0d4932
+                );
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    rgba(3, 32, 21, .78),
+                    rgba(8, 65, 42, .86)
+                ),
+                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+
+            z-index: -1;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 80px;
+
+            padding: 0 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            color: white;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,.13);
+
+            border: 1px solid rgba(255,255,255,.2);
+
+            font-size: 24px;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .brand-name {
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .brand-sub {
+            font-size: 10px;
+            color: rgba(255,255,255,.65);
+            margin-top: 3px;
+        }
+
+        .home-btn {
+            border: none;
+
+            padding: 10px 17px;
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,.12);
+
+            border: 1px solid rgba(255,255,255,.18);
+
+            color: white;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            font-size: 12px;
+
+            transition: .25s;
+        }
+
+        .home-btn:hover {
+            background: rgba(255,255,255,.22);
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .page {
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 100px 18px 40px;
+        }
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-card {
+            width: 100%;
+            max-width: 480px;
+
+            padding: 34px;
+
+            background: rgba(255,255,255,.97);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 30px 90px
+                rgba(0,0,0,.35);
+
+            animation: cardAppear .7s ease;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           FARMER ICON
+        ========================= */
+
+        .farmer-icon {
+            width: 82px;
+            height: 82px;
+
+            margin: 0 auto 16px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #e8f5e9;
+
+            border-radius: 25px;
+
+            font-size: 43px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(20,100,60,.12);
+        }
+
+        .title {
+            text-align: center;
+
+            font-size: 29px;
+
+            font-weight: 800;
+
+            color: #17251c;
+        }
+
+        .telugu-title {
+            text-align: center;
+
+            color: #187244;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+            margin-top: 6px;
+        }
+
+        .description {
+            max-width: 370px;
+
+            margin: 12px auto 24px;
+
+            text-align: center;
+
+            color: #707a73;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            text-align: center;
+
+            padding: 12px 5px;
+
+            border-radius: 15px;
+
+            background: #f3f8f4;
+
+            color: #69736c;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+        }
+
+        .feature-icon {
+            display: block;
+
+            font-size: 21px;
+
+            margin-bottom: 4px;
+        }
+
+        /* =========================
+           VOICE
+        ========================= */
+
+        .voice-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px;
+
+            margin-bottom: 22px;
+
+            border-radius: 17px;
+
+            background: #edf8ef;
+
+            border: 1px solid #d9ecdd;
+        }
+
+        .voice-button {
+            width: 48px;
+            height: 48px;
+
+            flex-shrink: 0;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: #176d40;
+
+            color: white;
+
+            font-size: 21px;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .voice-button:hover {
+            transform: scale(1.06);
+
+            box-shadow:
+                0 8px 20px
+                rgba(23,109,64,.25);
+        }
+
+        .voice-button.speaking {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow:
+                    0 0 0 0
+                    rgba(23,109,64,.5);
+            }
+
+            70% {
+                box-shadow:
+                    0 0 0 12px
+                    rgba(23,109,64,0);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 0 0
+                    rgba(23,109,64,0);
+            }
+        }
+
+        .voice-text {
+            color: #637069;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+        .voice-text strong {
+            display: block;
+
+            color: #176d40;
+
+            font-size: 13px;
+
+            margin-bottom: 2px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 8px;
+
+            color: #29352d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box input {
+            width: 100%;
+
+            height: 55px;
+
+            border: 1px solid #dfe6e0;
+
+            border-radius: 16px;
+
+            outline: none;
+
+            background: #f9fbf9;
+
+            padding: 0 48px;
+
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .input-box input:focus {
+            border-color: #176d40;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(23,109,64,.08);
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 18px;
+
+            color: #78837b;
+        }
+
+        .show-password {
+            position: absolute;
+
+            right: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: none;
+
+            cursor: pointer;
+
+            font-size: 17px;
+        }
+
+        .error {
+            display: none;
+
+            margin-top: 6px;
+
+            color: #d83a3a;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+        .error-input {
+            border-color: #d83a3a !important;
+
+            background: #fff7f7 !important;
+        }
+
+        /* =========================
+           OPTIONS
+        ========================= */
+
+        .options {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 3px 0 20px;
+        }
+
+        .remember {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            font-size: 12px;
+
+            color: #6b756e;
+        }
+
+        .remember input {
+            accent-color: #176d40;
+        }
+
+        .forgot {
+            border: none;
+
+            background: none;
+
+            color: #176d40;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+            width: 100%;
+
+            height: 57px;
+
+            border: none;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d7950,
+                    #0b5034
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 25px
+                rgba(16,91,67,.22);
+
+            transition: .25s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 17px 32px
+                rgba(16,91,67,.3);
+        }
+
+        /* =========================
+           DEMO
+        ========================= */
+
+        .demo {
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 13px;
+
+            background: #f4f7f4;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            color: #69736d;
+        }
+
+        .demo strong {
+            color: #176d40;
+        }
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+        .register {
+            text-align: center;
+
+            margin-top: 21px;
+
+            padding-top: 19px;
+
+            border-top: 1px solid #edf0ed;
+
+            color: #707971;
+
+            font-size: 13px;
+        }
+
+        .register-button {
+            border: none;
+
+            background: none;
+
+            color: #176d40;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .telugu-register {
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 11px;
+
+            color: #8a938d;
+        }
+
+        /* =========================
+           SECURITY
+        ========================= */
+
+        .security {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 17px;
+
+            color: #89918b;
+
+            font-size: 10px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0,20,12,.68);
+
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-card {
+            width: 100%;
+
+            max-width: 470px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            position: relative;
+
+            padding: 28px;
+
+            border-radius: 26px;
+
+            background: white;
+
+            box-shadow:
+                0 30px 90px
+                rgba(0,0,0,.4);
+
+            animation: popup .3s ease;
+        }
+
+        @keyframes popup {
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(.92)
+                    translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #f0f4f1;
+
+            font-size: 20px;
+
+            color: #56615a;
+
+            cursor: pointer;
+        }
+
+        .modal-title {
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+
+            margin: 0 auto 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background: #e8f5e9;
+
+            font-size: 32px;
+        }
+
+        .modal-title h2 {
+            font-size: 23px;
+
+            color: #17251c;
+        }
+
+        .modal-title p {
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            color: #7b857e;
+        }
+
+        .register-submit {
+            width: 100%;
+
+            height: 53px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d7950,
+                    #0b5034
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:600px) {
+
+            nav {
+                padding: 0 18px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .brand-sub {
+                display: none;
+            }
+
+            .page {
+                padding: 95px 14px 25px;
+            }
+
+            .login-card {
+                padding: 28px 20px;
+
+                border-radius: 25px;
+            }
+
+            .title {
+                font-size: 25px;
+            }
+
+            .modal-card {
+                padding: 25px 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🌱
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                AgriDirect
+            </div>
+
+            <div class="brand-sub">
+                Direct Farmer-to-Buyer Marketplace
+            </div>
+
+        </div>
+
+    </div>
+
+    <button
+        class="home-btn"
+        onclick="goHome()">
+
+        🏠 Home
+
+    </button>
+
+</nav>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<main class="page">
+
+    <section class="login-card">
+
+        <div class="farmer-icon">
+            👨‍🌾
+        </div>
+
+        <h1 class="title">
+            Farmer Login
+        </h1>
+
+        <div class="telugu-title">
+            రైతు లాగిన్
+        </div>
+
+        <p class="description">
+
+            Welcome, Farmer! Login to sell your
+            crops directly to buyers and get
+            better market opportunities.
+
+        </p>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    🌾
+                </span>
+
+                Sell Crops
+
+            </div>
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    🤝
+                </span>
+
+                Direct Buyers
+
+            </div>
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    💰
+                </span>
+
+                Better Price
+
+            </div>
+
+        </div>
+
+
+        <!-- VOICE -->
+
+        <div class="voice-box">
+
+            <button
+                type="button"
+                class="voice-button"
+                id="voiceButton"
+                onclick="speakInstructions()">
+
+                🔊
+
+            </button>
+
+            <div class="voice-text">
+
+                <strong>
+                    Voice Help / వాయిస్ సహాయం
+                </strong>
+
+                స్పీకర్‌పై క్లిక్ చేస్తే లాగిన్ చేసే విధానం తెలుగులో వినిపిస్తుంది.
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <form
+            id="loginForm"
+            onsubmit="login(event)">
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+                <div class="label">
+                    📧 Email Address
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        ✉️
+                    </span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+                <div
+                    class="error"
+                    id="emailError">
+
+                    Please enter a valid email address.
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="field">
+
+                <div class="label">
+                    🔐 Password
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword()">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+                <div
+                    class="error"
+                    id="passwordError">
+
+                    Password must contain at least 6 characters.
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="options">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="remember">
+
+                    Remember me
+
+                </label>
+
+                <button
+                    type="button"
+                    class="forgot"
+                    onclick="forgotPassword()">
+
+                    Forgot password?
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+                class="login-button"
+                id="loginButton"
+                type="submit">
+
+                🔐 &nbsp; LOGIN / లాగిన్
+
+            </button>
+
+        </form>
+
+
+        <!-- DEMO ACCOUNT -->
+
+        <div class="demo">
+
+            <strong>
+                Demo Farmer Account
+            </strong>
+
+            <br>
+
+            Email:
+            farmer@agridirect.com
+
+            <br>
+
+            Password:
+            farmer123
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div class="register">
+
+            Don't have an account?
+
+            <button
+                type="button"
+                class="register-button"
+                onclick="openRegister()">
+
+                Create Farmer Account
+
+            </button>
+
+            <span class="telugu-register">
+
+                కొత్త రైతువా?
+                మీ ఖాతాను నమోదు చేసుకోండి
+
+            </span>
+
+        </div>
+
+
+        <div class="security">
+
+            🔒 Your information is protected
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     REGISTER POPUP
+========================= -->
+
+<div
+    class="modal"
+    id="registerModal">
+
+    <div class="modal-card">
+
+        <button
+            type="button"
+            class="close"
+            onclick="closeRegister()">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-title">
+
+            <div class="modal-icon">
+                👨‍🌾
+            </div>
+
+            <h2>
+                Create Farmer Account
+            </h2>
+
+            <p>
+                కొత్త రైతు ఖాతా
+            </p>
+
+        </div>
+
+
+        <form
+            id="registerForm"
+            onsubmit="createAccount(event)">
+
+
+            <!-- NAME -->
+
+            <div class="field">
+
+                <div class="label">
+                    👤 Full Name
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        type="text"
+                        id="farmerName"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="field">
+
+                <div class="label">
+                    📱 Mobile Number
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        📱
+                    </span>
+
+                    <input
+                        type="tel"
+                        id="farmerMobile"
+                        placeholder="Enter 10-digit mobile number"
+                        pattern="[0-9]{10}"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+                <div class="label">
+                    📧 Email Address
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        ✉️
+                    </span>
+
+                    <input
+                        type="email"
+                        id="farmerEmail"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- VILLAGE -->
+
+            <div class="field">
+
+                <div class="label">
+                    📍 Village
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        📍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="farmerVillage"
+                        placeholder="Enter your village"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="field">
+
+                <div class="label">
+                    🔐 Create Password
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="toggleNewPassword()">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="register-submit"
+                type="submit">
+
+                🌱 &nbsp;
+                CREATE FARMER ACCOUNT
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   GO HOME
+========================= */
+
+function goHome() {
+
+    window.location.href = "/";
+
+}
+
+
+/* =========================
+   TELUGU VOICE
+========================= */
+
+function speakTelugu(text) {
+
+    if (!("speechSynthesis" in window)) {
+
+        alert(
+            "మీ బ్రౌజర్‌లో వాయిస్ సౌకర్యం అందుబాటులో లేదు."
+        );
+
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const speech =
+        new SpeechSynthesisUtterance(text);
+
+    speech.lang = "te-IN";
+
+    speech.rate = 0.78;
+
+    speech.pitch = 1;
+
+    speech.volume = 1;
+
+    const voices =
+        window.speechSynthesis.getVoices();
+
+    const teluguVoice =
+        voices.find(
+            voice =>
+                voice.lang.toLowerCase() === "te-in"
+        ) ||
+        voices.find(
+            voice =>
+                voice.lang.toLowerCase().startsWith("te")
+        );
+
+    if (teluguVoice) {
+        speech.voice = teluguVoice;
+    }
+
+    const button =
+        document.getElementById("voiceButton");
+
+    button.classList.add("speaking");
+
+    speech.onend = function() {
+        button.classList.remove("speaking");
+    };
+
+    speech.onerror = function() {
+        button.classList.remove("speaking");
+    };
+
+    window.speechSynthesis.speak(speech);
+}
+
+
+/* =========================
+   LOGIN INSTRUCTIONS
+========================= */
+
+function speakInstructions() {
+
+    const teluguInstructions =
+
+        "అగ్రి డైరెక్ట్ రైతు లాగిన్‌కు స్వాగతం. " +
+
+        "లాగిన్ చేయడానికి ముందుగా మీ ఈమెయిల్ అడ్రస్‌ను నమోదు చేయండి. " +
+
+        "తర్వాత మీ పాస్‌వర్డ్‌ను నమోదు చేయండి. " +
+
+        "పాస్‌వర్డ్‌ను చూడడానికి కంటి గుర్తుపై క్లిక్ చేయండి. " +
+
+        "మీ వివరాలు సరిగ్గా ఉన్నాయని నిర్ధారించుకున్న తర్వాత లాగిన్ బటన్‌పై క్లిక్ చేయండి. " +
+
+        "మీకు ఖాతా లేకపోతే క్రియేట్ ఫార్మర్ అకౌంట్‌పై క్లిక్ చేసి కొత్త ఖాతాను నమోదు చేసుకోండి. " +
+
+        "లాగిన్ విజయవంతమైన తర్వాత రైతు డ్యాష్‌బోర్డ్ తెరుచుకుంటుంది.";
+
+    speakTelugu(teluguInstructions);
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const button =
+        document.querySelector(
+            "#loginForm .show-password"
+        );
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        button.textContent = "🙈";
+
+    } else {
+
+        password.type = "password";
+
+        button.textContent = "👁️";
+
+    }
+}
+
+
+/* =========================
+   NEW PASSWORD
+========================= */
+
+function toggleNewPassword() {
+
+    const password =
+        document.getElementById("newPassword");
+
+    const button =
+        document.querySelector(
+            "#registerForm .show-password"
+        );
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        button.textContent = "🙈";
+
+    } else {
+
+        password.type = "password";
+
+        button.textContent = "👁️";
+
+    }
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("email");
+
+    const password =
+        document.getElementById("password");
+
+    const emailError =
+        document.getElementById("emailError");
+
+    const passwordError =
+        document.getElementById("passwordError");
+
+    email.classList.remove("error-input");
+
+    password.classList.remove("error-input");
+
+    emailError.style.display = "none";
+
+    passwordError.style.display = "none";
+
+    let valid = true;
+
+
+    /* EMAIL VALIDATION */
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email.value.trim())) {
+
+        email.classList.add("error-input");
+
+        emailError.style.display = "block";
+
+        valid = false;
+    }
+
+
+    /* PASSWORD VALIDATION */
+
+    if (password.value.length < 6) {
+
+        password.classList.add("error-input");
+
+        passwordError.style.display = "block";
+
+        valid = false;
+    }
+
+
+    if (!valid) {
+
+        return;
+    }
+
+
+    /* DEMO LOGIN */
+
+    if (
+        email.value.trim().toLowerCase() ===
+        "farmer@agridirect.com"
+        &&
+        password.value ===
+        "farmer123"
+    ) {
+
+        const button =
+            document.getElementById("loginButton");
+
+        button.innerHTML =
+            "✓ LOGIN SUCCESSFUL";
+
+        button.style.background =
+            "#176d40";
+
+        localStorage.setItem(
+            "farmerName",
+            "Farmer"
+        );
+
+        localStorage.setItem(
+            "farmerEmail",
+            email.value.trim()
+        );
+
+        setTimeout(function() {
+            const form = document.createElement("form");
+            form.method = "post";
+            form.action = "/farmer-login";
+
+            [["email", email.value.trim()], ["password", password.value]].forEach(function(entry) {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = entry[0];
+                input.value = entry[1];
+                form.appendChild(input);
+            });
+
+            document.body.appendChild(form);
+            form.submit();
+        }, 700);
+
+    } else {
+
+        password.classList.add("error-input");
+
+        passwordError.innerHTML =
+            "Incorrect email or password. Please try again.";
+
+        passwordError.style.display =
+            "block";
+    }
+}
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+function forgotPassword() {
+
+    alert(
+        "Password recovery will be connected to your registered mobile number or email."
+    );
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+function openRegister() {
+
+    document
+        .getElementById("registerModal")
+        .classList.add("active");
+}
+
+
+function closeRegister() {
+
+    document
+        .getElementById("registerModal")
+        .classList.remove("active");
+
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+    }
+}
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+function createAccount(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("farmerName").value.trim();
+
+    const mobile =
+        document.getElementById("farmerMobile").value.trim();
+
+    const email =
+        document.getElementById("farmerEmail").value.trim();
+
+    const village =
+        document.getElementById("farmerVillage").value.trim();
+
+    const password =
+        document.getElementById("newPassword").value;
+
+
+    if (
+        name === "" ||
+        !/^[0-9]{10}$/.test(mobile) ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+        village === "" ||
+        password.length < 6
+    ) {
+
+        alert(
+            "Please complete all the required fields correctly."
+        );
+
+        return;
+    }
+
+
+    /*
+       Save basic demo account information
+       in the browser.
+    */
+
+    localStorage.setItem(
+        "farmerName",
+        name
+    );
+
+    localStorage.setItem(
+        "farmerMobile",
+        mobile
+    );
+
+    localStorage.setItem(
+        "farmerEmail",
+        email
+    );
+
+    localStorage.setItem(
+        "farmerVillage",
+        village
+    );
+
+
+    alert(
+        "🎉 Farmer account created successfully!"
+    );
+
+
+    document.getElementById(
+        "registerForm"
+    ).reset();
+
+
+    closeRegister();
+
+
+    document.getElementById(
+        "email"
+    ).value = email;
+}
+
+
+/* =========================
+   CLOSE POPUP OUTSIDE
+========================= */
+
+document
+    .getElementById("registerModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                closeRegister();
+            }
+        }
+    );
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeRegister();
+        }
+    }
+);
+
+</script>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+</body>
+
+</html>

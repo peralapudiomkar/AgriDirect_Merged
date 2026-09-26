@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Tracking | AgriDirect</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#f3f8f3;color:#1d3b24}header{background:#176b38;color:white;padding:18px 30px;display:flex;justify-content:space-between;align-items:center}header h1{font-size:22px}.back-btn{color:white;text-decoration:none;background:#0d542b;padding:10px 18px;border-radius:8px}.container{max-width:1200px;margin:25px auto;padding:0 20px}.card{background:white;border-radius:15px;padding:22px;box-shadow:0 5px 20px rgba(0,0,0,.08);margin-bottom:20px}.head{display:flex;justify-content:space-between;gap:15px;align-items:center}.status{padding:8px 15px;border-radius:20px;background:#e8f7ed;color:#16733a;font-weight:bold}.details{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:18px}.box{background:#f5faf6;padding:15px;border-radius:10px}.box span{display:block;color:#777;font-size:12px;margin-bottom:5px}.box strong{font-size:15px}#map{height:500px;border-radius:15px;overflow:hidden}.controls{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}button{border:0;padding:12px 18px;border-radius:8px;cursor:pointer;font-weight:bold}.primary{background:#176b38;color:white}.secondary{background:#e8f7ed;color:#176b38}.message{margin-top:15px;padding:12px;background:#f5faf6;border-radius:8px;line-height:1.5;font-size:13px}.warning{background:#fff8e7;color:#765600}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#aaa;margin-right:6px}.dot.live{background:#18a957;box-shadow:0 0 0 4px rgba(24,169,87,.12)}
+@media(max-width:600px){header{padding:15px}header h1{font-size:18px}#map{height:400px}.head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><h1>🌾 AgriDirect — Live Order Tracking</h1><a href="{{ url_for('tracking_back') }}" class="back-btn">← Back</a></header>
+<div class="container">
+<div class="card">
+<div class="head"><div><h2>Order #{{ order_id }}</h2><p style="margin-top:5px;color:#718078">Live transporter location</p></div><div class="status" id="orderStatus">{{ order.status }}</div></div>
+<div class="details">
+<div class="box"><span>Crop</span><strong>{{ order.crop }}</strong></div>
+<div class="box"><span>Quantity</span><strong>{{ order.quantity }} kg</strong></div>
+<div class="box"><span>Farmer</span><strong>{{ order.farmer }}</strong></div>
+<div class="box"><span>Buyer</span><strong>{{ order.buyer_name }}</strong></div>
+<div class="box"><span>Transporter</span><strong>{{ order.transporter_name }}</strong></div>
+<div class="box"><span>Vehicle</span><strong>{{ order.vehicle_number }}</strong></div>
+<div class="box"><span>GPS Accuracy</span><strong id="accuracy">Waiting for GPS</strong></div>
+<div class="box"><span>Last GPS Update</span><strong id="lastUpdate">Not available</strong></div>
+</div></div>
+<div class="card"><h2>📍 Live Delivery Location</h2><div id="map" style="margin-top:15px"></div><div class="controls"><button class="primary" onclick="refreshTracking()">🔄 Refresh</button><button class="secondary" onclick="centerDriver()">🚛 Locate Transporter</button></div><div class="message" id="message"><span class="dot" id="dot"></span>Connecting to tracking server...</div></div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const ORDER_ID={{ order_id|tojson }};
+let map,marker,currentPoint=null,timer=null;
+function initMap(){map=L.map('map').setView([16.3067,80.4365],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(map);}
+async function refreshTracking(){try{const r=await fetch(`/api/orders/${encodeURIComponent(ORDER_ID)}`);const d=await r.json();if(!d.ok)throw new Error(d.error||'Unable to load order');const o=d.order;document.getElementById('orderStatus').textContent=o.status;const loc=o.location||{};document.getElementById('accuracy').textContent=loc.accuracy?`${Math.round(loc.accuracy)} m`:'Waiting for GPS';document.getElementById('lastUpdate').textContent=loc.timestamp?new Date(loc.timestamp).toLocaleString():'Not available';if(loc.lat!==null&&loc.lat!==undefined&&loc.lng!==null&&loc.lng!==undefined){currentPoint=[Number(loc.lat),Number(loc.lng)];if(!marker){marker=L.marker(currentPoint).addTo(map).bindPopup('🚛 Live transporter location').openPopup()}else marker.setLatLng(currentPoint);map.setView(currentPoint,15);document.getElementById('dot').classList.add('live');document.getElementById('message').textContent=`📍 Live location received. ${o.last_event||''}`;}else{document.getElementById('message').textContent='⏳ Waiting for the transporter to start GPS tracking.';document.getElementById('dot').classList.remove('live');}}catch(e){console.error(e);document.getElementById('message').textContent='❌ Unable to connect to the tracking server.';}}
+function centerDriver(){if(!currentPoint){alert('Transporter GPS location is not available yet.');return}map.setView(currentPoint,16);if(marker)marker.openPopup()}
+document.addEventListener('DOMContentLoaded',()=>{initMap();refreshTracking();timer=setInterval(refreshTracking,5000)});
+window.addEventListener('beforeunload',()=>clearInterval(timer));
+</script>
+<script src="{{ url_for('static', filename='js/language.js') }}"></script></body></html>

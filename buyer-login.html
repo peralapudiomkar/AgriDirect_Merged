@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Buyer Login | AgriDirect</title>
+
+<style>
+
+/* =====================================
+   RESET
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: #17231b;
+    overflow-x: hidden;
+    background: #071d16;
+}
+
+
+/* =====================================
+   BACKGROUND
+===================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(4, 30, 22, .84),
+            rgba(10, 60, 44, .88)
+        ),
+        url(
+            "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=2000&q=85"
+        );
+
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+
+/* =====================================
+   NAVBAR
+===================================== */
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    padding: 22px 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: white;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    cursor: pointer;
+}
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,.12);
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    border-radius: 14px;
+
+    font-size: 24px;
+
+    backdrop-filter: blur(12px);
+}
+
+.brand-name {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.brand-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,.6);
+    margin-top: 3px;
+}
+
+.nav-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav-button {
+    padding: 9px 14px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.1);
+
+    border: 1px solid rgba(255,255,255,.17);
+
+    color: white;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    font-size: 12px;
+
+    transition: .25s;
+}
+
+.nav-button:hover {
+    background: rgba(255,255,255,.2);
+    transform: translateY(-1px);
+}
+
+
+/* =====================================
+   PAGE
+===================================== */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 100px 20px 40px;
+}
+
+
+/* =====================================
+   LOGIN CARD
+===================================== */
+
+.login-card {
+    width: 100%;
+    max-width: 480px;
+
+    background: rgba(255,255,255,.97);
+
+    border-radius: 30px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.32);
+
+    animation: cardIn .7s ease;
+}
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =====================================
+   BUYER ICON
+===================================== */
+
+.buyer-icon {
+    width: 76px;
+    height: 76px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e7f3ee;
+
+    border-radius: 24px;
+
+    font-size: 39px;
+
+    box-shadow:
+        0 10px 25px rgba(16,91,67,.12);
+}
+
+.title {
+    text-align: center;
+
+    font-size: 28px;
+
+    color: #17231b;
+
+    font-weight: 800;
+}
+
+.telugu-title {
+    text-align: center;
+
+    margin-top: 6px;
+
+    color: #176b3a;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.description {
+    text-align: center;
+
+    color: #707871;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin: 12px auto 25px;
+
+    max-width: 360px;
+}
+
+
+/* =====================================
+   BENEFITS
+===================================== */
+
+.benefits {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+}
+
+.benefit {
+    text-align: center;
+
+    padding: 12px 5px;
+
+    background: #f3f8f5;
+
+    border-radius: 14px;
+
+    font-size: 10px;
+
+    color: #68736c;
+
+    line-height: 1.4;
+}
+
+.benefit-icon {
+    display: block;
+
+    font-size: 21px;
+
+    margin-bottom: 4px;
+}
+
+
+/* =====================================
+   VOICE
+===================================== */
+
+.voice-guide {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    margin-bottom: 22px;
+
+    border-radius: 17px;
+
+    background: #eef8ef;
+
+    border: 1px solid #dcefdc;
+}
+
+.voice-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    border: none;
+
+    background: #176b3a;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    transition: .25s;
+}
+
+.voice-icon:hover {
+    transform: scale(1.06);
+}
+
+.voice-icon.speaking {
+    animation: voicePulse 1s infinite;
+}
+
+@keyframes voicePulse {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(23,107,58,.5);
+    }
+
+    70% {
+        box-shadow:
+            0 0 0 12px rgba(23,107,58,0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(23,107,58,0);
+    }
+}
+
+.voice-text {
+    font-size: 12px;
+
+    color: #5e6861;
+
+    line-height: 1.4;
+}
+
+.voice-text strong {
+    display: block;
+
+    color: #176b3a;
+
+    font-size: 13px;
+
+    margin-bottom: 2px;
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.field {
+    margin-bottom: 19px;
+}
+
+.field-label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #263229;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box input {
+    width: 100%;
+
+    height: 55px;
+
+    padding: 0 48px;
+
+    border: 1px solid #e0e6e1;
+
+    outline: none;
+
+    border-radius: 16px;
+
+    font-size: 14px;
+
+    background: #f9fbf9;
+
+    transition: .25s;
+}
+
+.input-box input:focus {
+    border-color: #176b3a;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(23,107,58,.08);
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 16px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #7c8780;
+
+    font-size: 18px;
+}
+
+.password-toggle {
+    position: absolute;
+
+    right: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    color: #69736c;
+}
+
+
+/* =====================================
+   ERROR
+===================================== */
+
+.error {
+    display: none;
+
+    margin-top: 7px;
+
+    color: #d93636;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.input-error {
+    border-color: #d93636 !important;
+
+    background: #fff7f7 !important;
+}
+
+
+/* =====================================
+   OPTIONS
+===================================== */
+
+.options {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 4px 0 22px;
+}
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 12px;
+
+    color: #667068;
+}
+
+.remember input {
+    accent-color: #176b3a;
+}
+
+.forgot {
+    border: none;
+
+    background: none;
+
+    color: #176b3a;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =====================================
+   LOGIN BUTTON
+===================================== */
+
+.login-btn {
+    width: 100%;
+
+    height: 56px;
+
+    border: none;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1c7650,
+            #0c5138
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 25px rgba(16,91,67,.22);
+
+    transition: .25s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 30px rgba(16,91,67,.28);
+}
+
+
+/* =====================================
+   DEMO
+===================================== */
+
+.demo {
+    margin-top: 16px;
+
+    padding: 12px;
+
+    background: #f5f7f5;
+
+    border-radius: 13px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #69736c;
+
+    line-height: 1.5;
+}
+
+.demo strong {
+    color: #176b3a;
+}
+
+
+/* =====================================
+   REGISTER
+===================================== */
+
+.register {
+    text-align: center;
+
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf0ed;
+
+    font-size: 13px;
+
+    color: #707871;
+}
+
+.register button {
+    border: none;
+
+    background: none;
+
+    color: #176b3a;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.register button:hover {
+    text-decoration: underline;
+}
+
+.telugu-register {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 11px;
+}
+
+
+/* =====================================
+   SECURITY
+===================================== */
+
+.security {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 18px;
+
+    color: #879087;
+
+    font-size: 10px;
+}
+
+
+/* =====================================
+   MODAL
+===================================== */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0,20,12,.72);
+
+    backdrop-filter: blur(8px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-card {
+    width: 100%;
+
+    max-width: 480px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    position: relative;
+
+    padding: 30px;
+
+    border-radius: 27px;
+
+    background: white;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.45);
+
+    animation: modalIn .3s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.92)
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.close {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f0f4f1;
+
+    color: #56615a;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+.modal-header {
+    text-align: center;
+
+    margin-bottom: 22px;
+}
+
+.modal-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #e7f3ee;
+
+    font-size: 32px;
+}
+
+.modal-header h2 {
+    font-size: 23px;
+
+    color: #17231b;
+}
+
+.modal-header p {
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    color: #7b857e;
+}
+
+
+/* =====================================
+   REGISTER MESSAGE
+===================================== */
+
+.register-message {
+    display: none;
+
+    padding: 11px;
+
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.register-message.success {
+    display: block;
+
+    background: #e9f8ed;
+
+    color: #176b3a;
+}
+
+.register-message.error-msg {
+    display: block;
+
+    background: #fff0f0;
+
+    color: #d93636;
+}
+
+
+/* =====================================
+   CREATE ACCOUNT BUTTON
+===================================== */
+
+.create-account-btn {
+    width: 100%;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1c7650,
+            #0c5138
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(16,91,67,.22);
+
+    transition: .25s;
+}
+
+.create-account-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   CLEAR ACCOUNT BUTTON
+===================================== */
+
+.clear-account-btn {
+    width: 100%;
+
+    margin-top: 10px;
+
+    height: 42px;
+
+    border: 1px solid #e2e7e3;
+
+    border-radius: 12px;
+
+    background: #f7f9f7;
+
+    color: #69736c;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:600px) {
+
+    nav {
+        padding: 18px;
+    }
+
+    .help-button {
+        display: none;
+    }
+
+    .page {
+        padding: 90px 15px 25px;
+    }
+
+    .login-card {
+        padding: 28px 21px;
+
+        border-radius: 25px;
+    }
+
+    .title {
+        font-size: 25px;
+    }
+
+    .benefits {
+        gap: 6px;
+    }
+
+    .modal-card {
+        padding: 27px 20px;
+
+        border-radius: 24px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="background"></div>
+
+
+<!-- =====================================
+     NAVIGATION
+===================================== -->
+
+<nav>
+
+    <div
+        class="brand"
+        onclick="goHome()">
+
+        <div class="brand-icon">
+            🌱
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                AgriDirect
+            </div>
+
+            <div class="brand-sub">
+                Smart farming • Direct selling
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <button
+            type="button"
+            class="nav-button"
+            onclick="goHome()">
+
+            🏠 Home
+
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            onclick="speakLoginGuide()">
+
+            🔊 తెలుగు సహాయం
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================
+     LOGIN PAGE
+===================================== -->
+
+<div class="page">
+
+    <div class="login-card">
+
+
+        <div class="buyer-icon">
+            🏪
+        </div>
+
+
+        <h1 class="title">
+            Buyer Login
+        </h1>
+
+
+        <div class="telugu-title">
+            కొనుగోలుదారు లాగిన్
+        </div>
+
+
+        <p class="description">
+
+            Login to discover fresh crops directly
+            from farmers and make better purchases.
+
+        </p>
+
+
+        <!-- BENEFITS -->
+
+        <div class="benefits">
+
+            <div class="benefit">
+
+                <span class="benefit-icon">
+                    🌾
+                </span>
+
+                Fresh Crops
+
+            </div>
+
+
+            <div class="benefit">
+
+                <span class="benefit-icon">
+                    🤝
+                </span>
+
+                Direct Farmers
+
+            </div>
+
+
+            <div class="benefit">
+
+                <span class="benefit-icon">
+                    💰
+                </span>
+
+                Better Deals
+
+            </div>
+
+        </div>
+
+
+        <!-- VOICE -->
+
+        <div class="voice-guide">
+
+            <button
+                type="button"
+                class="voice-icon"
+                id="voiceButton"
+                onclick="speakLoginGuide()">
+
+                🔊
+
+            </button>
+
+
+            <div class="voice-text">
+
+                <strong>
+                    Voice Help / వాయిస్ సహాయం
+                </strong>
+
+                స్పీకర్ బటన్‌ను నొక్కితే
+                లాగిన్ విధానం తెలుగులో వినిపిస్తుంది.
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="loginForm" onsubmit="login(event)">
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    📧
+
+                    <span>
+                        Email Address
+                    </span>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        ✉️
+                    </span>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+
+                <div
+                    class="error"
+                    id="emailError">
+
+                    Please enter a valid email address.
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    🔐
+
+                    <span>
+                        Password
+                    </span>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="loginPasswordToggle">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="error"
+                    id="passwordError">
+
+                    Password must be at least 6 characters.
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="options">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="remember">
+
+                    Remember me
+
+                </label>
+
+
+                <button
+                    type="button"
+                    class="forgot"
+                    onclick="forgotPassword()">
+
+                    Forgot password?
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton">
+
+                🔐 &nbsp; LOGIN
+
+            </button>
+
+        </form>
+
+
+        <!-- DEMO -->
+
+        <div class="demo">
+
+            <strong>
+                Demo Buyer Login
+            </strong>
+
+            <br>
+
+            Email:
+            buyer@agridirect.com
+
+            <br>
+
+            Password:
+            buyer123
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div class="register">
+
+            Don't have a buyer account?
+
+            <button
+                type="button"
+                id="openRegisterButton">
+
+                Create Buyer Account
+
+            </button>
+
+
+            <span class="telugu-register">
+
+                కొత్త కొనుగోలుదారు?
+                మీ ఖాతాను నమోదు చేసుకోండి
+
+            </span>
+
+        </div>
+
+
+        <!-- SECURITY -->
+
+        <div class="security">
+
+            🔒 Your information is protected
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     CREATE ACCOUNT MODAL
+===================================== -->
+
+<div
+    class="modal"
+    id="registerModal">
+
+
+    <div class="modal-card">
+
+
+        <button
+            type="button"
+            class="close"
+            id="closeRegisterButton">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-header">
+
+            <div class="modal-icon">
+                🏪
+            </div>
+
+            <h2>
+                Create Buyer Account
+            </h2>
+
+            <p>
+                కొత్త కొనుగోలుదారు ఖాతా
+            </p>
+
+        </div>
+
+
+        <div
+            class="register-message"
+            id="registerMessage">
+        </div>
+
+
+        <form id="registerForm">
+
+
+            <!-- NAME -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    👤
+                    <span>Full Name</span>
+
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        type="text"
+                        id="buyerName"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    📱
+                    <span>Mobile Number</span>
+
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        📱
+                    </span>
+
+                    <input
+                        type="tel"
+                        id="buyerMobile"
+                        placeholder="Enter 10-digit mobile number"
+                        maxlength="10"
+                        inputmode="numeric"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    📧
+                    <span>Email Address</span>
+
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        ✉️
+                    </span>
+
+                    <input
+                        type="email"
+                        id="buyerEmail"
+                        placeholder="Enter a valid email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    🔐
+                    <span>Create Password</span>
+
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="buyerPassword"
+                        placeholder="Minimum 6 characters"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="buyerPasswordToggle">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="field">
+
+                <div class="field-label">
+
+                    🔐
+                    <span>Confirm Password</span>
+
+                </div>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Re-enter your password"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="confirmPasswordToggle">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+                <div
+                    class="error"
+                    id="confirmPasswordError">
+
+                    Passwords do not match.
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="create-account-btn">
+                Create Buyer Account
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+const loginEmail = document.getElementById("email");
+const loginPassword = document.getElementById("password");
+
+function login(event) {
+    event.preventDefault();
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    emailError.style.display = "none";
+    passwordError.style.display = "none";
+
+    if (!validEmail.test(loginEmail.value.trim())) {
+        emailError.style.display = "block";
+        return;
+    }
+    if (loginPassword.value.length < 6) {
+        passwordError.style.display = "block";
+        return;
+    }
+    if (loginEmail.value.trim().toLowerCase() !== "buyer@agridirect.com" || loginPassword.value !== "buyer123") {
+        passwordError.textContent = "Incorrect email or password. Please try again.";
+        passwordError.style.display = "block";
+        return;
+    }
+
+    const form = document.createElement("form");
+    form.method = "post";
+    form.action = "/buyer-login";
+    [["email", loginEmail.value.trim()], ["password", loginPassword.value]].forEach(([name, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+    });
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function goHome() {
+    window.location.href = "/";
+}
+
+document.getElementById("openRegisterButton").addEventListener("click", () => document.getElementById("registerModal").classList.add("active"));
+document.getElementById("closeRegisterButton").addEventListener("click", () => document.getElementById("registerModal").classList.remove("active"));
+document.getElementById("loginPasswordToggle").addEventListener("click", () => {
+    loginPassword.type = loginPassword.type === "password" ? "text" : "password";
+});
+</script>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+</body>
+
+</html>
