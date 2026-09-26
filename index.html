@@ -23,10 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* ==============================
-           BACKGROUND
-        ============================== */
-
         .background {
             position: fixed;
             inset: 0;
@@ -62,10 +58,6 @@
                     transparent 30%
                 );
         }
-
-        /* ==============================
-           NAVBAR
-        ============================== */
 
         nav {
             width: 100%;
@@ -110,10 +102,6 @@
             color: rgba(255, 255, 255, 0.65);
         }
 
-        /* ==============================
-           LANGUAGE SELECTOR
-        ============================== */
-
         .language {
             padding: 9px 14px;
 
@@ -138,10 +126,6 @@
             background: white;
         }
 
-        /* ==============================
-           MAIN
-        ============================== */
-
         main {
             min-height: calc(100vh - 100px);
 
@@ -158,10 +142,6 @@
 
             text-align: center;
         }
-
-        /* ==============================
-           HERO ICON
-        ============================== */
 
         .hero-icon {
             width: 150px;
@@ -201,10 +181,6 @@
                 transform: translateY(-12px);
             }
         }
-
-        /* ==============================
-           TEXT
-        ============================== */
 
         .welcome {
             color: #9de0a9;
@@ -253,10 +229,6 @@
 
             font-size: 15px;
         }
-
-        /* ==============================
-           FEATURE SLIDER
-        ============================== */
 
         .slider {
             margin: 35px auto;
@@ -328,10 +300,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* ==============================
-           BUTTONS
-        ============================== */
 
         .buttons {
             display: flex;
@@ -409,10 +377,6 @@
                 0 15px 35px rgba(0, 0, 0, 0.25);
         }
 
-        /* ==============================
-           BOTTOM
-        ============================== */
-
         .bottom {
             margin-top: 28px;
 
@@ -422,10 +386,6 @@
 
             letter-spacing: 0.3px;
         }
-
-        /* ==============================
-           MOBILE
-        ============================== */
 
         @media (max-width: 700px) {
 
@@ -489,10 +449,6 @@
 
     <div class="background"></div>
 
-    <!-- ==============================
-         NAVIGATION
-    ============================== -->
-
     <nav>
 
         <div class="logo">
@@ -513,8 +469,6 @@
 
         </div>
 
-        <!-- LANGUAGE SELECTOR -->
-
         <select
             id="languageSelector"
             class="language"
@@ -529,11 +483,6 @@
 
     </nav>
 
-
-    <!-- ==============================
-         HERO
-    ============================== -->
-
     <main>
 
         <section class="hero">
@@ -542,12 +491,8 @@
                 🌾
             </div>
 
-            <div
-                class="welcome"
-                id="welcomeText">
-
+            <div class="welcome" id="welcomeText">
                 Welcome to AgriDirect
-
             </div>
 
             <h1>
@@ -564,9 +509,7 @@
 
             </h1>
 
-            <p
-                class="description"
-                id="descriptionText">
+            <p class="description" id="descriptionText">
 
                 AI-powered mobile marketplace connecting
                 farmers directly with buyers — helping
@@ -575,19 +518,12 @@
 
             </p>
 
-            <p
-                class="telugu"
-                id="supportText">
+            <p class="telugu" id="supportText">
 
                 Connecting farmers directly with buyers
                 and providing better market opportunities.
 
             </p>
-
-
-            <!-- ==============================
-                 FEATURE SLIDER
-            ============================== -->
 
             <div class="slider">
 
@@ -611,7 +547,6 @@
 
                 </div>
 
-
                 <div class="slide">
 
                     <div class="slide-icon">
@@ -631,7 +566,6 @@
                     </div>
 
                 </div>
-
 
                 <div class="slide">
 
@@ -655,14 +589,7 @@
 
             </div>
 
-
-            <!-- ==============================
-                 LOGIN BUTTONS
-            ============================== -->
-
             <div class="buttons">
-
-                <!-- FARMER -->
 
                 <button
                     class="btn farmer"
@@ -676,9 +603,6 @@
 
                 </button>
 
-
-                <!-- BUYER -->
-
                 <button
                     class="btn buyer"
                     onclick="buyerLogin()">
@@ -690,9 +614,6 @@
                     </span>
 
                 </button>
-
-
-                <!-- TRANSPORTER -->
 
                 <button
                     class="btn transporter"
@@ -708,10 +629,7 @@
 
             </div>
 
-
-            <div
-                class="bottom"
-                id="bottomText">
+            <div class="bottom" id="bottomText">
 
                 🌱 Connecting farms with opportunities
 
@@ -721,23 +639,16 @@
 
     </main>
 
-
-    <!-- ==============================
-         JAVASCRIPT
-    ============================== -->
-
-    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+    <!-- JavaScript -->
 
     <script>
-
         /* ==========================================
            FEATURE SLIDER
         ========================================== */
 
         let currentSlide = 0;
 
-        const slides =
-            document.querySelectorAll(".slide");
+        const slides = document.querySelectorAll(".slide");
 
         function showSlide(index) {
 
@@ -762,23 +673,22 @@
 
 
         /* ==========================================
-           LOGIN FUNCTIONS
+           GITHUB PAGES LOGIN NAVIGATION
         ========================================== */
 
-    function farmerLogin() {
-        window.location.href = "{{ url_for('farmer_login') }}";
-    }
+        function farmerLogin() {
+            window.location.href = "farmer-login.html";
+        }
 
-    function buyerLogin() {
-        window.location.href = "{{ url_for('buyer_login') }}";
-    }
+        function buyerLogin() {
+            window.location.href = "buyer-login.html";
+        }
 
-    function transporterLogin() {
-        window.location.href = "{{ url_for('transporter_login') }}";
-    }
+        function transporterLogin() {
+            window.location.href = "transporter_login.html";
+        }
     </script>
 
-<script src="{{ url_for('static', filename='js/language.js') }}"></script>
 </body>
 
 </html>
